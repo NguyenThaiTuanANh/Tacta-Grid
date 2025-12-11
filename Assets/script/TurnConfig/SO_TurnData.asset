@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4cc610090f05d49ac26d3165c52885, type: 3}
+  m_Name: SO_TurnData
+  m_EditorClassIdentifier: Assembly-CSharp::SO_TurnData
+  turnGroups:
+  - startTurn: 1
+    endTurn: 2
+    enemies:
+    - prefab: {fileID: 255883960591906946, guid: 392234bc2f3f90b4c8ebb7b58d5c98fa, type: 3}
+      spawnPercent: 100
+      baseHealth: 1
+      baseDamage: 1
+      baseSpeed: 1.1
+  - startTurn: 3
+    endTurn: 5
+    enemies:
+    - prefab: {fileID: 255883960591906946, guid: 392234bc2f3f90b4c8ebb7b58d5c98fa, type: 3}
+      spawnPercent: 50
+      baseHealth: 1
+      baseDamage: 1
+      baseSpeed: 1.1
+    - prefab: {fileID: 255883960591906946, guid: be24d36f79a78084ba6cef6bdef77d94, type: 3}
+      spawnPercent: 50
+      baseHealth: 1.5
+      baseDamage: 1.5
+      baseSpeed: 1.3
+  - startTurn: 6
+    endTurn: 10
+    enemies:
+    - prefab: {fileID: 255883960591906946, guid: 392234bc2f3f90b4c8ebb7b58d5c98fa, type: 3}
+      spawnPercent: 50
+      baseHealth: 1
+      baseDamage: 1
+      baseSpeed: 1.1
+    - prefab: {fileID: 255883960591906946, guid: a99f7b2ec50944446b1bfcac40bfa7cc, type: 3}
+      spawnPercent: 50
+      baseHealth: 2
+      baseDamage: 2
+      baseSpeed: 1.6
+  - startTurn: 11
+    endTurn: 15
+    enemies:
+    - prefab: {fileID: 255883960591906946, guid: be24d36f79a78084ba6cef6bdef77d94, type: 3}
+      spawnPercent: 50
+      baseHealth: 1.5
+      baseDamage: 1.5
+      baseSpeed: 1.3
+    - prefab: {fileID: 255883960591906946, guid: a99f7b2ec50944446b1bfcac40bfa7cc, type: 3}
+      spawnPercent: 50
+      baseHealth: 2
+      baseDamage: 2
+      baseSpeed: 1.6
+  - startTurn: 16
+    endTurn: 20
+    enemies:
+    - prefab: {fileID: 255883960591906946, guid: 392234bc2f3f90b4c8ebb7b58d5c98fa, type: 3}
+      spawnPercent: 20
+      baseHealth: 1
+      baseDamage: 1
+      baseSpeed: 1.1
+    - prefab: {fileID: 255883960591906946, guid: be24d36f79a78084ba6cef6bdef77d94, type: 3}
+      spawnPercent: 30
+      baseHealth: 1.5
+      baseDamage: 1.5
+      baseSpeed: 1.3
+    - prefab: {fileID: 255883960591906946, guid: a99f7b2ec50944446b1bfcac40bfa7cc, type: 3}
+      spawnPercent: 50
+      baseHealth: 2
+      baseDamage: 2
+      baseSpeed: 1.6
+  - startTurn: 21
+    endTurn: 100
+    enemies:
+    - prefab: {fileID: 255883960591906946, guid: 392234bc2f3f90b4c8ebb7b58d5c98fa, type: 3}
+      spawnPercent: 10
+      baseHealth: 1
+      baseDamage: 1
+      baseSpeed: 1.1
+    - prefab: {fileID: 255883960591906946, guid: be24d36f79a78084ba6cef6bdef77d94, type: 3}
+      spawnPercent: 40
+      baseHealth: 1.5
+      baseDamage: 1.5
+      baseSpeed: 1.3
+    - prefab: {fileID: 255883960591906946, guid: a99f7b2ec50944446b1bfcac40bfa7cc, type: 3}
+      spawnPercent: 50
+      baseHealth: 2
+      baseDamage: 2
+      baseSpeed: 1.6
