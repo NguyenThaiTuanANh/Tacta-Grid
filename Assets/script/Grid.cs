@@ -534,6 +534,27 @@ public class Grid : MonoBehaviour
         return grid1Expanded || grid2Expanded;
     }
 
+
+    public bool IsAdjacent(GridIndex gridIndex, Vector2Int targetPos)
+    {
+        // Kiểm tra xem vị trí này có cạnh các ô hiện có không
+        Vector2Int[] directions = new Vector2Int[]
+        {
+            targetPos + Vector2Int.up,
+            targetPos + Vector2Int.down,
+            targetPos + Vector2Int.left,
+            targetPos + Vector2Int.right
+        };
+        foreach (Vector2Int neighbor in directions)
+        {
+            if (cells[gridIndex].ContainsKey(neighbor))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     /// <summary>
     /// Mở rộng grid ở vị trí cụ thể (nếu vị trí đó cạnh các ô hiện có)
     /// </summary>
@@ -655,6 +676,22 @@ public class Grid : MonoBehaviour
             }
             cellNonGrids.Remove(roundedPos);
         }
+    }
+
+    public CellNonGrid GetNonGridCellAtPosition(Vector3 worldPos)
+    {
+        // Làm tròn vị trí để tìm đúng key
+        Vector3 roundedPos = new Vector3(
+            Mathf.Round(worldPos.x / cellSize) * cellSize,
+            transform.position.y,
+            Mathf.Round(worldPos.z / cellSize) * cellSize
+        );
+
+        if (cellNonGrids.ContainsKey(roundedPos))
+        {
+            return cellNonGrids[roundedPos].GetComponent<CellNonGrid>();
+        }
+        return null;
     }
 
     /// <summary>

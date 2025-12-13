@@ -18,6 +18,12 @@ public class BlockExpandGrid : MonoBehaviour
     private bool isDragging = false;
     private bool isUsed = false;
     private Plane dragPlane;
+    public CellNonGrid nonGrid;
+    private Grid _grid;
+    private CellNonGrid _currentHighlight;
+    private LayerMask _combinedMask;
+    private Vector3 dragScreenOffset = new (100f, 0f, 100f);
+
 
     private void Awake()
     {
@@ -26,6 +32,8 @@ public class BlockExpandGrid : MonoBehaviour
             mainCamera = Camera.main;
         }
         dragPlane = new Plane(Vector3.up, transform.position);
+        _grid = FindFirstObjectByType<Grid>();
+        _combinedMask = gridLayerMask | nonGridLayerMask;
     }
 
     private void Start()
@@ -80,13 +88,43 @@ public class BlockExpandGrid : MonoBehaviour
     {
         if (isUsed || !isDragging) return;
 
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        float distance;
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition - dragScreenOffset);
 
-        if (dragPlane.Raycast(ray, out distance))
+        if (dragPlane.Raycast(ray, out float distance))
         {
-            Vector3 hitPoint = ray.GetPoint(distance);
-            transform.position = hitPoint;
+            transform.position = ray.GetPoint(distance);
+            UpdateHighlight(ray);
+        }
+    }
+
+
+    private void UpdateHighlight(Ray ray)
+    {
+        if (_grid == null) return;
+
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, _combinedMask))
+        {
+            CellNonGrid cell = _grid.GetNonGridCellAtPosition(hit.point);
+
+            if (cell != null && cell != _currentHighlight)
+            {
+                ClearHighlight();
+                _currentHighlight = cell;
+                var (gridIndex, cellPos) = _grid.WorldToGridPositionWithIndex(cell.transform.position);
+                _currentHighlight.SetHighlight(_grid.IsAdjacent(gridIndex, cellPos));
+            }
+        }
+        else
+        {
+            ClearHighlight();
+        }
+    }
+    private void ClearHighlight()
+    {
+        if (_currentHighlight != null)
+        {
+            _currentHighlight.SetNormal();
+            _currentHighlight = null;
         }
     }
 
@@ -96,39 +134,22 @@ public class BlockExpandGrid : MonoBehaviour
 
         isDragging = false;
 
-        // Kiểm tra xem có thả vào grid hoặc cellNonGrid không
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+        if (_currentHighlight == null) return;
 
-        Grid grid = FindFirstObjectByType<Grid>();
-        if (grid != null)
+        Vector3 pos = _currentHighlight.transform.position;
+
+        ClearHighlight();
+
+        if (_grid.ExpandGridAtWorldPosition(pos, 1))
         {
-            // Thử raycast vào grid layer hoặc nonGrid layer
-            LayerMask combinedMask = gridLayerMask | nonGridLayerMask;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, combinedMask))
-            {
-                // Sử dụng method mới để tự động xác định grid dựa trên vị trí world
-                // Method này sẽ tự động xóa cellNonGrid nếu có
-                if (grid.ExpandGridAtWorldPosition(hit.point, 1))
-                {
-                    // Phát âm thanh Explosion khi sử dụng ExpandBlockGrid
-                    if (AudioManager.Instance != null)
-                    {
-                        AudioManager.Instance.PlayOneShot(AudioType.Explosion);
-                    }
+            AudioManager.Instance?.PlayOneShot(AudioType.Explosion);
+            SpawnParticleEffect(pos);
 
-                    // Spawn particle effect tại vị trí này
-                    SpawnParticleEffect(hit.point);
-
-                    // Xóa block sau khi dùng
-                    isUsed = true;
-                    Destroy(gameObject);
-                    return;
-                }
-            }
+            isUsed = true;
+            Destroy(gameObject);
+            return;
         }
 
-        // Nếu không thả vào grid hoặc không mở rộng được, quay về vị trí ban đầu
         transform.position = originalPosition;
     }
 
