@@ -37,6 +37,7 @@ public partial class TetrisBlock
         currentTower = towerObj.GetComponent<Tower>();
         if (currentTower != null)
         {
+            currentTower.SetblockType(blockType);
             currentTower.SetLevel(level);
 
             // Cache tower renderers

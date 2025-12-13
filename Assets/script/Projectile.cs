@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float speed = 10f; // World units per second trong 3D
     [SerializeField] private float lifetime = 5f;
     [SerializeField] private ParticleSystem hitParticleEffectPrefab; // Particle effect khi trúng enemy
+    [SerializeField] private GameObject flash; // Flash effect khi đạn được bắn đi
 
     private Enemy target;
     private float damage;
@@ -18,6 +19,25 @@ public class Projectile : MonoBehaviour
         target = targetEnemy;
         damage = projectileDamage;
         spawnTime = Time.time;
+
+        // Instantiate và show flash effect khi đạn được bắn đi
+        if (flash != null)
+        {
+            var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
+            flashInstance.transform.forward = gameObject.transform.forward;
+
+            // Hủy flash sau khi hiệu ứng hoàn thành
+            var flashPs = flashInstance.GetComponent<ParticleSystem>();
+            if (flashPs != null)
+            {
+                Destroy(flashInstance, flashPs.main.duration);
+            }
+            else
+            {
+                var flashPsParts = flashInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
+                Destroy(flashInstance, flashPsParts.main.duration);
+            }
+        }
     }
 
     private void Update()
@@ -63,6 +83,8 @@ public class Projectile : MonoBehaviour
 
             target.TakeDamage(damage);
         }
+
+        // Destroy projectile sau khi va chạm
         Destroy(gameObject);
     }
 
@@ -88,4 +110,3 @@ public class Projectile : MonoBehaviour
         }
     }
 }
-
