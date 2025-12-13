@@ -22,7 +22,7 @@ public class BlockExpandGrid : MonoBehaviour
     private Grid _grid;
     private CellNonGrid _currentHighlight;
     private LayerMask _combinedMask;
-    private Vector3 dragScreenOffset = new (100f, 0f, 100f);
+    private Vector3 dragScreenOffset;
 
 
     private void Awake()
@@ -80,9 +80,15 @@ public class BlockExpandGrid : MonoBehaviour
         {
             isDragging = true;
             originalPosition = transform.position;
-            dragPlane = new Plane(Vector3.up, transform.position);
+
+            dragPlane = new Plane(-mainCamera.transform.forward, transform.position);
+
+            // ✅ Tính offset
+            Vector3 screenPos = mainCamera.WorldToScreenPoint(transform.position - transform.right - transform.up);
+            dragScreenOffset = Input.mousePosition - screenPos;
         }
     }
+
 
     private void OnDrag()
     {
