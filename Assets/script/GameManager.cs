@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         if (resultUI != null && Start == false)
         {
             Debug.Log("WIN TURN: 1");
-            //resultUI.ShowWinTurn();
+            resultUI.ShowWinTurn();
         }
         // Kiểm tra win condition
         if (currentTurn > maxTurns)
@@ -269,7 +269,7 @@ public class GameManager : MonoBehaviour
     {
         if (turnText != null)
         {
-            turnText.text = $"Turn: {currentTurn - 1}/{maxTurns}";
+            turnText.text = $"{currentTurn} / {maxTurns}";
         }
     }
 

@@ -217,6 +217,11 @@ public class Tower : MonoBehaviour
         }
 
         GameObject projectile = Instantiate(projectilePrefabs[index], firePoint.position, firePoint.rotation);
+        float baseScale = 1f;
+        float scalePerLevel = 0.2f; // mỗi level tăng 10%
+
+        float finalScale = baseScale + level * scalePerLevel;
+        projectile.transform.localScale = Vector3.one * finalScale;
         Projectile projScript = projectile.GetComponent<Projectile>();
         if (projScript != null)
         {

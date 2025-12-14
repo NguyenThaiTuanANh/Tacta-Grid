@@ -42,7 +42,7 @@ public class UIUpgradeTower : MonoBehaviour
     [SerializeField] private float fireRatePerLevelUpgrade = 0.02f;
 
     [SerializeField] private int baseCost = 100;
-    [SerializeField] private float costMultiplier = 1.5f; // Mỗi lần upgrade, cost tăng 1.5x
+    [SerializeField] private float costMultiplier = 2f; // Mỗi lần upgrade, cost tăng 1.5x
 
     private TowerDataManager dataManager;
     private TowerUpgradeData towerData;

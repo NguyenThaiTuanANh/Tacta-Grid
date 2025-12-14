@@ -12,7 +12,7 @@ public class Base : MonoBehaviour
     [SerializeField] private float currentHealth;
 
     [Header("Visual")]
-    [SerializeField] private TMPro.TextMeshPro healthText; // 3D text
+    [SerializeField] private TMPro.TextMeshProUGUI healthText; // 3D text
     [SerializeField] private Slider healthSlider; // UI Slider để hiển thị thanh máu
                                                   // Health bar có thể dùng 3D Canvas hoặc Billboard
 

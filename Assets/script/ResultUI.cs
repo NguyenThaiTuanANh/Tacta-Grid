@@ -71,6 +71,7 @@ public class ResultUI : MonoBehaviour
 
         if (contentsWin != null)
             contentsWinTurn.SetActive(true);
+        Invoke("HideAll", 2f);
 
     }
 
