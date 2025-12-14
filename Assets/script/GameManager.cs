@@ -269,7 +269,7 @@ public class GameManager : MonoBehaviour
     {
         if (turnText != null)
         {
-            turnText.text = $"Turn: {currentTurn - 1}/{maxTurns}";
+            turnText.text = $"{currentTurn} / {maxTurns}";
         }
     }
 

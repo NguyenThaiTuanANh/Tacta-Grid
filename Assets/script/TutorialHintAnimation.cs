@@ -59,6 +59,7 @@ public class TutorialHintAnimation : MonoBehaviour
             canvasObj.AddComponent<GraphicRaycaster>();
 
             transform.SetParent(canvasObj.transform, false);
+            Debug.Log("1");
         }
 
         mainCamera = Camera.main;

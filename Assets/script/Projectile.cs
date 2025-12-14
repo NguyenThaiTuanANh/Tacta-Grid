@@ -8,16 +8,39 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float speed = 10f; // World units per second trong 3D
     [SerializeField] private float lifetime = 5f;
     [SerializeField] private ParticleSystem hitParticleEffectPrefab; // Particle effect khi trúng enemy
+    [SerializeField] private GameObject flash; // Flash effect khi đạn được bắn đi
+    public GameObject[] Detached;
 
     private Enemy target;
     private float damage;
     private float spawnTime;
+    private Rigidbody rb;
 
     public void Initialize(Enemy targetEnemy, float projectileDamage)
     {
+        rb = GetComponent<Rigidbody>();
         target = targetEnemy;
         damage = projectileDamage;
         spawnTime = Time.time;
+
+        // Instantiate và show flash effect khi đạn được bắn đi
+        if (flash != null)
+        {
+            var flashInstance = Instantiate(flash, transform.position, Quaternion.identity);
+            flashInstance.transform.forward = gameObject.transform.forward;
+
+            // Hủy flash sau khi hiệu ứng hoàn thành
+            var flashPs = flashInstance.GetComponent<ParticleSystem>();
+            if (flashPs != null)
+            {
+                Destroy(flashInstance, flashPs.main.duration);
+            }
+            else
+            {
+                var flashPsParts = flashInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
+                Destroy(flashInstance, flashPsParts.main.duration);
+            }
+        }
     }
 
     private void Update()
@@ -26,7 +49,8 @@ public class Projectile : MonoBehaviour
         if (target != null && target.IsAlive())
         {
             Vector3 direction = (target.transform.position - transform.position).normalized;
-            transform.position += direction * speed * Time.deltaTime;
+            //transform.position += direction * speed * Time.deltaTime;
+            rb.linearVelocity = direction * speed;
 
             // Xoay projectile về phía target
             if (direction != Vector3.zero)
@@ -63,6 +87,15 @@ public class Projectile : MonoBehaviour
 
             target.TakeDamage(damage);
         }
+        //Removing trail from the projectile on cillision enter or smooth removing. Detached elements must have "AutoDestroying script"
+        foreach (var detachedPrefab in Detached)
+        {
+            if (detachedPrefab != null)
+            {
+                detachedPrefab.transform.parent = null;
+            }
+        }
+        // Destroy projectile sau khi va chạm
         Destroy(gameObject);
     }
 
@@ -88,4 +121,3 @@ public class Projectile : MonoBehaviour
         }
     }
 }
-

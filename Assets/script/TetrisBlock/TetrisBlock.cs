@@ -176,6 +176,7 @@ public partial class TetrisBlock : MonoBehaviour
             if (currentTower == null)
             {
                 SpawnTower();
+                currentTower.SetblockType(blockType);
             }
             else
             {

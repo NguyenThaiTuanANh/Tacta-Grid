@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using System.Linq.Expressions;
 
 /// <summary>
 /// Component bắn của khối Tetris (tower defense) - 3D
@@ -19,8 +20,10 @@ public class Tower : MonoBehaviour
     [SerializeField] private float fireRatePerLevel = 0.1f; // Giảm thời gian giữa các lần bắn
 
     [Header("Projectile")]
+    [SerializeField] private List<GameObject> projectilePrefabs;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform firePoint;
+    private TetrisBlockType blockType;
 
     [Header("Visual")]
     [SerializeField] private LineRenderer rangeIndicator; // LineRenderer để hiển thị phạm vi
@@ -165,7 +168,8 @@ public class Tower : MonoBehaviour
     /// </summary>
     private void Fire()
     {
-        if (currentTarget == null || projectilePrefab == null) return;
+        //if (currentTarget == null || projectilePrefab == null) return;
+        if (currentTarget == null || projectilePrefabs == null) return;
 
         // Phát âm thanh shoot
         if (AudioManager.Instance != null)
@@ -174,8 +178,50 @@ public class Tower : MonoBehaviour
         }
 
         // Tạo projectile trong 3D space
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        //GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
 
+        int index = 0;
+        switch (blockType)
+        {
+            case TetrisBlockType.I:
+                index = 0;
+                break;
+
+            case TetrisBlockType.O:
+                index = 1;
+                break;
+
+            case TetrisBlockType.T:
+                index = 2;
+                break;
+
+            case TetrisBlockType.S:
+                index = 3;
+                break;
+
+            case TetrisBlockType.Z:
+                index = 4;
+                break;
+
+            case TetrisBlockType.J:
+                index = 5;
+                break;
+
+            case TetrisBlockType.L:
+                index = 6;
+                break;
+
+            default:
+                index = 0;
+                break;
+        }
+
+        GameObject projectile = Instantiate(projectilePrefabs[index], firePoint.position, firePoint.rotation);
+        float baseScale = 1f;
+        float scalePerLevel = 0.2f; // mỗi level tăng 10%
+
+        float finalScale = baseScale + level * scalePerLevel;
+        projectile.transform.localScale = Vector3.one * finalScale;
         Projectile projScript = projectile.GetComponent<Projectile>();
         if (projScript != null)
         {
@@ -192,6 +238,12 @@ public class Tower : MonoBehaviour
         UpdateStats();
         UpdateRangeIndicator();
         UpdateTowerColor();
+    }
+
+    public void SetblockType(TetrisBlockType temp)
+    {
+        blockType = temp;
+        Debug.Log("AnhNTT Type: " + blockType);
     }
 
     /// <summary>

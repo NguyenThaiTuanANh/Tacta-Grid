@@ -150,6 +150,7 @@ public class TutorialHintManager : MonoBehaviour
         isShowingHint = true;
 
         currentHintObject = Instantiate(hintDotPrefab);
+        Debug.Log("2");
 
         currentHintAnimation = currentHintObject.GetComponent<TutorialHintAnimation>();
         if (currentHintAnimation != null)

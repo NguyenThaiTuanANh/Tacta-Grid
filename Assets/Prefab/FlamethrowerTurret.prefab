@@ -195,7 +195,15 @@ MonoBehaviour:
   damagePerLevel: 0
   rangePerLevel: 0
   fireRatePerLevel: 0
-  projectilePrefab: {fileID: 898296319597508209, guid: 3c3747211ce0d324c8a47a914d663e5a, type: 3}
+  projectilePrefabs:
+  - {fileID: 1094010528761658, guid: bc26422733bca2f42b6fb9d1db80ff21, type: 3}
+  - {fileID: 1294834399362254, guid: 7be58cac7a2a0d04fa7b2a054dee990c, type: 3}
+  - {fileID: 1699459221867030, guid: db40ea19936fd0c4cbd8002d02a878c0, type: 3}
+  - {fileID: 1473103337094032, guid: 3d1d9e62fc8aaba4eb22d954c31b3bd4, type: 3}
+  - {fileID: 1487245307642514, guid: bafc28008aabc80429d85378a9e47e2c, type: 3}
+  - {fileID: 1427661989262336, guid: 456cf6cd84fb18141843cc80ebf516c2, type: 3}
+  - {fileID: 1300573103503756, guid: 862e080d5ef90ff41bd37827afa4cf9c, type: 3}
+  projectilePrefab: {fileID: 1094010528761658, guid: bc26422733bca2f42b6fb9d1db80ff21, type: 3}
   firePoint: {fileID: 6969820240599568992}
   rangeIndicator: {fileID: 0}
   gunBarrel: {fileID: 285544292704499078}
