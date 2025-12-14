@@ -98,6 +98,7 @@ public class BlockExpandGrid : MonoBehaviour
 
         if (dragPlane.Raycast(ray, out float distance))
         {
+            Debug.Log("hehe");
             transform.position = ray.GetPoint(distance);
             UpdateHighlight(ray);
         }
@@ -118,6 +119,10 @@ public class BlockExpandGrid : MonoBehaviour
                 _currentHighlight = cell;
                 var (gridIndex, cellPos) = _grid.WorldToGridPositionWithIndex(cell.transform.position);
                 _currentHighlight.SetHighlight(_grid.IsAdjacent(gridIndex, cellPos));
+            }
+            else if (cell == null)
+            {
+                ClearHighlight();
             }
         }
         else
@@ -140,7 +145,11 @@ public class BlockExpandGrid : MonoBehaviour
 
         isDragging = false;
 
-        if (_currentHighlight == null) return;
+        if (_currentHighlight == null)
+        {
+            transform.position = originalPosition;
+            return;
+        }
 
         Vector3 pos = _currentHighlight.transform.position;
 
