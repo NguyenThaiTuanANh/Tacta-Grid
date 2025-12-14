@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGameWon;
     public UnityEvent OnGameLost;
 
-    private int currentTurn = 1;
+    private int currentTurn = 20;
     private bool isGameActive = false;
     private bool isPlayerTurn = true; // Phase người chơi đặt item
     private List<GameObject> currentTurnSpawnedObjects = new List<GameObject>(); // TetrisBlock hoặc BlockExpandGrid

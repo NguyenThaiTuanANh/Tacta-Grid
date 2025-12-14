@@ -85,9 +85,9 @@ MonoBehaviour:
     enemies:
     - prefab: {fileID: 3727548885805111208, guid: 92dd02a183f553b4b8ae9b312d057761, type: 3}
       spawnPercent: 20
-      baseHealth: 1
-      baseDamage: 1
-      baseSpeed: 1.1
+      baseHealth: 4
+      baseDamage: 4
+      baseSpeed: 2.2
     - prefab: {fileID: 6025078051659013551, guid: 249d5098d28ab2842986dd3c0868567f, type: 3}
       spawnPercent: 30
       baseHealth: 1.5
