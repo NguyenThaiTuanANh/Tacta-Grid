@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using System.Collections;
 
 /// <summary>
 /// Thành - có HP, game over khi HP = 0
@@ -20,6 +21,11 @@ public class Base : MonoBehaviour
     public UnityEvent<float> OnHealthChanged;
     public UnityEvent OnBaseDestroyed;
 
+    private Color originalColor;
+    private Coroutine blinkCoroutine;
+    [SerializeField] private Image healthFill;
+    private bool gameOver = false;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -31,8 +37,40 @@ public class Base : MonoBehaviour
             healthSlider.maxValue = maxHealth;
             healthSlider.value = maxHealth;
         }
+        originalColor = healthFill.color;
 
         UpdateHealthDisplay();
+    }
+
+    /// <summary>
+    /// Nhấp nháy xanh lá
+    /// </summary>
+    /// <param name="duration">Tổng thời gian nhấp nháy</param>
+    /// <param name="speed">Tốc độ nhấp nháy</param>
+    public void BlinkGreen(float duration = 1f, float speed = 6f)
+    {
+        if (blinkCoroutine != null)
+            StopCoroutine(blinkCoroutine);
+
+        blinkCoroutine = StartCoroutine(BlinkGreenRoutine(duration, speed));
+    }
+
+    private IEnumerator BlinkGreenRoutine(float duration, float speed)
+    {
+        float time = 0f;
+        Color green = Color.green;
+
+        while (time < duration)
+        {
+            float t = Mathf.PingPong(Time.time * speed, 1f);
+            healthFill.color = Color.Lerp(originalColor, green, t);
+
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        healthFill.color = originalColor;
+        blinkCoroutine = null;
     }
 
     /// <summary>
@@ -52,8 +90,9 @@ public class Base : MonoBehaviour
         UpdateHealthDisplay();
         OnHealthChanged?.Invoke(currentHealth);
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && gameOver == false)
         {
+            gameOver = true;
             OnBaseDestroyed?.Invoke();
         }
     }
@@ -63,6 +102,7 @@ public class Base : MonoBehaviour
     /// </summary>
     public void Heal(float amount)
     {
+        BlinkGreen(1.5f, 8f);
         currentHealth += amount;
         currentHealth = Mathf.Min(maxHealth, currentHealth);
         UpdateHealthDisplay();

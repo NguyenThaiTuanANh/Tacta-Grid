@@ -9713,7 +9713,6 @@ GameObject:
   - component: {fileID: 198055307359729732}
   - component: {fileID: 199691258809547058}
   - component: {fileID: 108353070863986816}
-  - component: {fileID: 114672091461940390}
   - component: {fileID: 135350336402146296}
   - component: {fileID: 54933371835274920}
   - component: {fileID: 1629014999445966798}
@@ -14680,26 +14679,6 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!114 &114672091461940390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1487245307642514}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 605a456cfc02f6b499a64717539a27e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  hitOffset: 0.1
-  UseFirePointRotation: 0
-  rotationOffset: {x: 0, y: 0, z: 0}
-  hit: {fileID: 1402743518298044, guid: 6220b0bbd4630c24a9d0fd570b53d326, type: 3}
-  flash: {fileID: 1292704331029830, guid: 28538e5931854494fbe4d98d2d4cd548, type: 3}
-  Detached:
-  - {fileID: 0}
 --- !u!135 &135350336402146296
 SphereCollider:
   m_ObjectHideFlags: 0

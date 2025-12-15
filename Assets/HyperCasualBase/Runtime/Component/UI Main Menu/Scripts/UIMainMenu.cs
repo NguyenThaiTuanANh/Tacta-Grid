@@ -13,6 +13,7 @@ public class UIMainMenu : MonoBehaviour
     [SerializeField] private UIPopupGuide uIPopupGuide;
     [SerializeField] private UIPopupSetting uIPopupSetting;
     [SerializeField] private UIPopupShop uIPopupShop;
+    [SerializeField] private Button buttonQuit;
 
     private void Start()
     {
@@ -46,6 +47,9 @@ public class UIMainMenu : MonoBehaviour
         {
             buttonGuide.onClick.AddListener(OnGuideClicked);
         }
+
+        if (buttonQuit != null)
+            buttonQuit.onClick.AddListener(OnQuitClicked);
     }
 
     private void OnPlayClicked()
@@ -76,10 +80,23 @@ public class UIMainMenu : MonoBehaviour
         EventBus.Publish(new OnGuideClicked());
         uIPopupGuide.Show();
     }
+
+    private void OnQuitClicked()
+    {
+        AudioManager.Instance?.PlayOneShot(AudioType.UITap);
+        EventBus.Publish(new OnQuitClicked());
+
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false; // Thoát Play Mode khi test trong Editor
+#else
+    Application.Quit(); // Thoát game khi build
+#endif
+    }
 }
 
 public struct OnPlayClicked { }
 public struct OnSettingClicked { }
 public struct OnShopClicked { }
 public struct OnGuideClicked { }
+public struct OnQuitClicked { }
 

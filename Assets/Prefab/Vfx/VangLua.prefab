@@ -4869,7 +4869,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4390807112950584}
   - component: {fileID: 198174953248088352}
-  - component: {fileID: 114394607976914768}
   - component: {fileID: 199541557569965598}
   - component: {fileID: 108468018855002760}
   - component: {fileID: 54437851353860038}
@@ -9712,28 +9711,6 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!114 &114394607976914768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1294834399362254}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 605a456cfc02f6b499a64717539a27e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 12
-  hitOffset: 0.1
-  UseFirePointRotation: 0
-  rotationOffset: {x: 0, y: 0, z: 0}
-  hit: {fileID: 1220213892471706, guid: 800cddb992d3f5e4eb2348b90447f4a7, type: 3}
-  flash: {fileID: 1766868900565162, guid: f82a1a892a042c1438f8f4704a37e11b, type: 3}
-  Detached:
-  - {fileID: 1620116646029536}
-  - {fileID: 1271313977751560}
-  - {fileID: 1752385679068124}
 --- !u!199 &199541557569965598
 ParticleSystemRenderer:
   serializedVersion: 6

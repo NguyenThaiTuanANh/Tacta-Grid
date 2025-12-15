@@ -20,6 +20,7 @@ public class BonusSpawner : MonoBehaviour
             cam.transform.forward * (spawnDistance + Random.Range(-5, 5)) +
             cam.transform.up * 3f +
             cam.transform.right * Random.Range(-3f, 3f);
+        spawnPos.y = 2f;
 
         Instantiate(
             bonusPrefabs[Random.Range(0, bonusPrefabs.Length)],

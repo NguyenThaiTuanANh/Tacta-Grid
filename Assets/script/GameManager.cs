@@ -32,12 +32,13 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnGameWon;
     public UnityEvent OnGameLost;
 
-    private int currentTurn = 20;
+    private int currentTurn = 1;
     private bool isGameActive = false;
     private bool isPlayerTurn = true; // Phase người chơi đặt item
     private List<GameObject> currentTurnSpawnedObjects = new List<GameObject>(); // TetrisBlock hoặc BlockExpandGrid
     private List<TetrisBlock> placedBlocks = new List<TetrisBlock>();
     public GameObject loadingPanel;
+    public BonusSpawner bonusSpawner;
 
     private void Start()
     {
@@ -143,7 +144,10 @@ public class GameManager : MonoBehaviour
         {
             nextTurnButton.interactable = false;
         }
-
+        if (currentTurn % 3 == 0)
+        {
+            bonusSpawner.Spawn();
+        }
         StartEnemyPhase();
     }
 

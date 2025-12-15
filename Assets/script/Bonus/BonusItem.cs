@@ -15,6 +15,7 @@ public class BonusItem : MonoBehaviour
     public BonusType bonusType;
     public float speed = 2f;
     public float lifeTime = 10f;
+    public GameObject vfxHit;
 
     private Camera mainCamera;
 
@@ -58,6 +59,23 @@ public class BonusItem : MonoBehaviour
 
         // Hiệu ứng click (optional)
         // Instantiate(pickupVFX, transform.position, Quaternion.identity);
+        if (vfxHit != null)
+        {
+            var flashInstance = Instantiate(vfxHit, transform.position, Quaternion.identity);
+            //flashInstance.transform.forward = gameObject.transform.forward;
+
+            // Hủy flash sau khi hiệu ứng hoàn thành
+            var flashPs = flashInstance.GetComponent<ParticleSystem>();
+            if (flashPs != null)
+            {
+                Destroy(flashInstance, flashPs.main.duration);
+            }
+            else
+            {
+                var flashPsParts = flashInstance.transform.GetChild(0).GetComponent<ParticleSystem>();
+                Destroy(flashInstance, flashPsParts.main.duration);
+            }
+        }
 
         Destroy(gameObject);
     }
