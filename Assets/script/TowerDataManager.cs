@@ -5,6 +5,7 @@ using UnityEngine;
 /// </summary>
 public class TowerDataManager : MonoBehaviour
 {
+    [SerializeField] private bool resetData = false;
     private const string TOWER_DATA_FILE = "TowerUpgradeData";
     private const string PLAYER_DATA_FILE = "PlayerData";
 
@@ -49,8 +50,12 @@ public class TowerDataManager : MonoBehaviour
     /// </summary>
     private void LoadAllData()
     {
-        LoadTowerData();
-        LoadPlayerData();
+        if(resetData == false)
+        {
+            LoadTowerData();
+            LoadPlayerData();
+        }
+        else ResetData();
     }
 
     /// <summary>
@@ -62,7 +67,7 @@ public class TowerDataManager : MonoBehaviour
         if (towerData == null)
         {
             // Tạo dữ liệu mặc định
-            towerData = new TowerUpgradeData(0.2f, 5f, 1f, 1f, 1f, 0.1f);
+            towerData = new TowerUpgradeData(0.6f, 5f, 1f, 0.2f, 0.5f, 0.1f);
             SaveTowerData();
         }
     }
@@ -78,6 +83,14 @@ public class TowerDataManager : MonoBehaviour
             playerData = new PlayerData();
             SavePlayerData();
         }
+    }
+
+    private void ResetData()
+    {
+        towerData = new TowerUpgradeData(0.6f, 5f, 1f, 0.2f, 0.5f, 0.1f);
+        playerData = new PlayerData();
+        SaveTowerData();
+        SavePlayerData();
     }
 
     /// <summary>

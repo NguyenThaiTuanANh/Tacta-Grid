@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     private int currentWaypointIndex = 0;
     private bool isMoving = false;
     private Base targetBase;
+    [SerializeField] private GameObject projectilePrefab;
 
     private void Start()
     {
@@ -127,7 +128,21 @@ public class Enemy : MonoBehaviour
         }
 
         // Delay destroy để popup kịp hiển thị
-        Destroy(gameObject, 1.5f);
+        //Destroy(gameObject, 0.5f);
+        StartCoroutine(DelayDestroy());
+    }
+
+    private IEnumerator DelayDestroy()
+    {
+        // Chờ một khoảng thời gian trước khi hủy gameObject (đảm bảo VFX đã hoàn thành và popup đã hiển thị)
+        yield return new WaitForSeconds(0.35f);
+        if (projectilePrefab != null)
+        {
+            Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        }
+        yield return new WaitForSeconds(0.1f);
+        // Sau thời gian chờ, hủy gameObject
+        Destroy(gameObject);
     }
 
     /// <summary>

@@ -37,7 +37,7 @@ public class BonusManager : MonoBehaviour
     void Heal()
     {
         Debug.Log("❤️ Heal Player");
-        playerBase.Heal(10);
+        playerBase.Heal(5);
     }
 
     void Shield()

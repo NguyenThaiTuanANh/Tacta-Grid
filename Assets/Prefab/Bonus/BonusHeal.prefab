@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BonusItem
   bonusType: 0
   speed: 0.3
-  lifeTime: 100
+  lifeTime: 10
   vfxHit: {fileID: 1231636063597364, guid: e56086c14073d1349a39fe669ade4b34, type: 3}
 --- !u!135 &5035812351237233879
 SphereCollider:

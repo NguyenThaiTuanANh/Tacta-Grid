@@ -18,7 +18,7 @@ MonoBehaviour:
     enemies:
     - prefab: {fileID: 1752896278221542704, guid: 1bc052048d7770b4481c49b4f4dbb586, type: 3}
       spawnPercent: 50
-      baseHealth: 1
+      baseHealth: 2
       baseDamage: 1
       baseSpeed: 1.1
     - prefab: {fileID: 4010010003859406289, guid: 77413df1fc54dfe48bf9fda82fe7afc6, type: 3}
@@ -31,7 +31,7 @@ MonoBehaviour:
     enemies:
     - prefab: {fileID: 1752896278221542704, guid: 1bc052048d7770b4481c49b4f4dbb586, type: 3}
       spawnPercent: 20
-      baseHealth: 1
+      baseHealth: 2
       baseDamage: 1
       baseSpeed: 1.1
     - prefab: {fileID: 4010010003859406289, guid: 77413df1fc54dfe48bf9fda82fe7afc6, type: 3}
@@ -54,12 +54,12 @@ MonoBehaviour:
       baseSpeed: 1.4
     - prefab: {fileID: 6943866971393398898, guid: 15fdc1efdf47d2d419d2c2820da335c2, type: 3}
       spawnPercent: 30
-      baseHealth: 2.5
+      baseHealth: 3
       baseDamage: 2.5
       baseSpeed: 1.6
     - prefab: {fileID: 8718117195522725833, guid: 9c15344b6006d6d49b0fbd124c127647, type: 3}
       spawnPercent: 50
-      baseHealth: 3
+      baseHealth: 3.5
       baseDamage: 3
       baseSpeed: 2
   - startTurn: 11
@@ -67,12 +67,12 @@ MonoBehaviour:
     enemies:
     - prefab: {fileID: 6943866971393398898, guid: 15fdc1efdf47d2d419d2c2820da335c2, type: 3}
       spawnPercent: 20
-      baseHealth: 2.5
+      baseHealth: 3
       baseDamage: 2.5
       baseSpeed: 1.6
     - prefab: {fileID: 8718117195522725833, guid: 9c15344b6006d6d49b0fbd124c127647, type: 3}
       spawnPercent: 40
-      baseHealth: 3
+      baseHealth: 3.5
       baseDamage: 3
       baseSpeed: 2
     - prefab: {fileID: 8305083566863513869, guid: d071f04651f908c439efbb25fd83f676, type: 3}
@@ -90,7 +90,7 @@ MonoBehaviour:
       baseSpeed: 2.2
     - prefab: {fileID: 6025078051659013551, guid: 249d5098d28ab2842986dd3c0868567f, type: 3}
       spawnPercent: 30
-      baseHealth: 1.5
+      baseHealth: 3
       baseDamage: 1.5
       baseSpeed: 1.4
     - prefab: {fileID: 8718117195522725833, guid: 9c15344b6006d6d49b0fbd124c127647, type: 3}

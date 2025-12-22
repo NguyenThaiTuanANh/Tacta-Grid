@@ -34,7 +34,7 @@ public class UIUpgradeTower : MonoBehaviour
     [SerializeField] private TextMeshProUGUI fireRatePerLevelCostText;
 
     [Header("Upgrade Settings")]
-    [SerializeField] private float baseDamageUpgrade = 5f;
+    [SerializeField] private float baseDamageUpgrade = 0.1f;
     [SerializeField] private float baseRangeUpgrade = 1f;
     [SerializeField] private float baseFireRateUpgrade = 0.1f;
     [SerializeField] private float damagePerLevelUpgrade = 1f;
@@ -157,7 +157,7 @@ public class UIUpgradeTower : MonoBehaviour
         // Cập nhật Base Damage
         if (baseDamageText != null)
         {
-            baseDamageText.text = $"Damage: {towerData.baseDamage:F1}";
+            baseDamageText.text = $"Level: {towerData.baseDamageLevel}";
         }
         if (baseDamageCostText != null)
         {
@@ -173,7 +173,7 @@ public class UIUpgradeTower : MonoBehaviour
         // Cập nhật Base Range
         if (baseRangeText != null)
         {
-            baseRangeText.text = $"Range: {towerData.baseRange:F1}";
+            baseRangeText.text = $"Level: {towerData.baseRangeLevel}";
         }
         if (baseRangeCostText != null)
         {
@@ -189,7 +189,7 @@ public class UIUpgradeTower : MonoBehaviour
         // Cập nhật Base Fire Rate
         if (baseFireRateText != null)
         {
-            baseFireRateText.text = $"Fire Rate: {towerData.baseFireRate:F2}s";
+            baseFireRateText.text = $"Level: {towerData.baseFireRateLevel}";
         }
         if (baseFireRateCostText != null)
         {

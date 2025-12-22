@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 public class Tower : MonoBehaviour
 {
     [Header("Tower Stats")]
-    [SerializeField] private float baseDamage = 10f;
+    [SerializeField] private float baseDamage = 5f;
     [SerializeField] private float baseRange = 5f; // World units trong 3D
     [SerializeField] private float baseFireRate = 1f; // Bắn mỗi X giây
 
